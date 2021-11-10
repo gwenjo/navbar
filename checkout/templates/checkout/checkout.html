@@ -8,27 +8,29 @@
     <div class="row-products">
         <div class="col text-center mt-3 mb-3 pb-1">
             <h2 class="logo-font">Checkout</h2>
+            <img src="{{ MEDIA_URL }}flowers.png" alt="flowers" class="head-flowers"
+                style="position: absolute;right:0;top:-85px">
         </div>
     </div>
-<!--- Title Tabs --->
+    <!-- Breadcrumbs -->
     <div class="container">
         <div class="row shop-top-row">
             <div class="col-12">
-                <div class="title_tabs">
-                    <p class="title_tabs-text">
-                        <a href="{% url 'home' %}" class="tabs-link">Home</a>
+                <div class="breadcrumbs">
+                    <p class="breadcrumbs-text">
+                        <a href="{% url 'home' %}" class="breadcrumb-link">Home</a>
                         |
-                        <a href="{% url 'products' %}" class="tabs-link">Products</a>
+                        <a href="{% url 'products' %}" class="breadcrumb-link">Shop</a>
                         |
-                        <a href="{% url 'view_bag' %}" class="tabs-link">Shopping bag</a>
+                        <a href="{% url 'view_bag' %}" class="breadcrumb-link">Shopping cart</a>
                         |
-                        <span class="active-tabs">Checkout</span>
+                        <span class="active-breadcrumb">Checkout</span>
                     </p>
                 </div>
             </div>
         </div>
     </div>
-<!--- Product count/information --->
+    <!-- Product count/information -->
     <div class="container">
         <div class="row">
             <div class="col-12 col-lg-6 order-lg-last mb-5 col-sm-12">
@@ -48,7 +50,7 @@
                             {% if item.product.image %}
                             <img class="w-100" src="{{ item.product.image.url }}" alt="{{ product.name }}">
                             {% else %}
-                            <img class="w-100" src="/media/noimage.png" alt="{{ product.name }}">
+                            <img class="w-100" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
                             {% endif %}
                         </a>
                     </div>
@@ -75,7 +77,7 @@
                     </div>
                 </div>
             </div>
-            <!--- checkout form --->
+            <!-- checkout form -->
             <div class="col-12 col-lg-6">
                 <form action="{% url 'checkout' %}" method="POST" id="payment-form">
                     {% csrf_token %}
@@ -109,11 +111,11 @@
                     </fieldset>
                     <fieldset class="px-3">
                         <legend class="fieldset-label small text-black px-2 w-auto">Payment</legend>
-                        <!--- A Stripe card element --->
+                        <!-- A Stripe card element -->
                         <div class="mb" id="card-element"></div>
-                        <!--- Used to display form errors --->
+                        <!-- Used to display form errors -->
                         <div class="mb-3 text-danger" id="card-errors" role="alert"></div>
-                        <!--- Pass the client secret to the view --->
+                        <!-- Pass the client secret to the view  -->
                         <input type="hidden" value="{{ client_secret }}" name="client_secret">
                     </fieldset>
                     <div class="submit-button text-right mt-5 mb-2">
@@ -121,7 +123,7 @@
                             <span class="icon">
                                 <i class="fas fa-chevron-left"></i>
                             </span>
-                            <span class="font-weight-bold">Adjust Bag</span>
+                            <span class="font-weight-bold">Adjust Cart</span>
                         </a>
                         <button id="submit-button" class="cta cta-white product-page-cta">
                             <span class="font-weight-bold">Complete Order</span>
@@ -132,7 +134,7 @@
         </div>
     </div>
 </div>
-<!--- Loading Overlay --->
+<!-- Loading overlay -->
 <div id="loading-overlay">
     <h1 class="text-light logo-font loading-spinner">
         <span class="icon">
@@ -146,5 +148,5 @@
 {{ block.super }}
 {{ stripe_public_key|json_script:"id_stripe_public_key" }}
 {{ client_secret|json_script:"id_client_secret" }}
-<script src="{% static 'checkout/js/stripe_elements.js' %}"></script>
+<script src="{% static 'js/stripe_elements.js' %}"></script>
 {% endblock %}

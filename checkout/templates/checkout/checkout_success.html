@@ -2,33 +2,35 @@
 {% load static %}
 
 {% block content %}
-<!--- Header --->
+<!-- Header -->
 <div class="container-fluid">
     <div class="row-products">
         <div class="col text-center mt-3 mb-3 pb-1">
             <h2 class="logo-font">Thank You</h2>
+            <img src="{{ MEDIA_URL }}flowers.png" alt="flowers" class="head-flowers"
+                style="position: absolute;right:0;top:-85px">
         </div>
     </div>
-<!--- Title Tabs --->
+    <!-- Breadcrumbs -->
     <div class="container">
         <div class="row shop-top-row">
             <div class="col-12">
-                <div class="title_tabs">
-                    <p class="title_tabs-text">
-                        <a href="{% url 'home' %}" class="tabs-link">Home</a>
+                <div class="breadcrumbs">
+                    <p class="breadcrumbs-text">
+                        <a href="{% url 'home' %}" class="breadcrumb-link">Home</a>
                         |
-                        <a href="{% url 'products' %}" class="tabs-link">Products</a>
+                        <a href="{% url 'products' %}" class="breadcrumb-link">Shop</a>
                         |
-                        <a href="{% url 'view_bag' %}" class="tabs-link">Shopping bag</a>
+                        <a href="{% url 'view_bag' %}" class="breadcrumb-link">Shopping cart</a>
                         |
-                        <span class="active-tabs">Checkout</span>
+                        <span class="active-breadcrumb">Checkout</span>
                     </p>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<!--- Order Summary --->
+<!-- Order summary -->
 <div class="container">
     <div class="row">
         <div class="col-12 col-md-6 col-lg-6">
@@ -78,7 +80,7 @@
                         {% if item.product.image %}
                         <img class="w-100" src="{{ item.product.image.url }}" alt="{{ product.name }}">
                         {% else %}
-                        <img class="w-100" src="/media/noimage.png" alt="{{ product.name }}">
+                        <img class="w-100" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
                         {% endif %}
                     </a>
                 </div>
@@ -91,7 +93,7 @@
                 </div>
                 </div>
                  {% endfor %}
-<!--- Information Order Product --->
+            <!-- Order product info -->
             <hr class="line">
             <div class="row text-black text-right">
                 <div class="col-7 offset-2 mt-2">
